@@ -71,7 +71,7 @@ EOF
 
 resource "aws_instance" "demo_instances_linux" {
   ami = "ami-bf04f1df"
-  instance_type = "t2.nano"
+  instance_type = "t2.micro"
   iam_instance_profile = "${aws_iam_instance_profile.runcommand_chef_bootstrap_profile.name}"
   tags = {
     Name = "chef_demo"
@@ -83,7 +83,7 @@ resource "aws_instance" "demo_instances_linux" {
 
 resource "aws_instance" "demo_instances_windows" {
   ami = "ami-8db945ed"
-  instance_type = "t2.nano"
+  instance_type = "t2.micro"
   iam_instance_profile = "${aws_iam_instance_profile.runcommand_chef_bootstrap_profile.name}"
   tags = {
     Name = "chef_demo"
