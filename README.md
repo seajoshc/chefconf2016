@@ -7,10 +7,3 @@ Materials from my talk at ChefConf 2016 "Cooking with AWS"
 
 # Sample Run Command Documents
 * https://github.com/irlrobot/chefconf2016/tree/master/run_command
-
-# KMS Demo
-aws kms encrypt --region us-west-2 --key-id KEYID --plaintext file://kms_demo.txt
-
-aws kms encrypt --region us-west-2 --key-id KEYID --plaintext file://kms_demo.txt --query CiphertextBlob --output text | base64 --decode > kms_demo.txt.encrypted
-
-aws kms decrypt --region us-west-2 --ciphertext-blob fileb://kms_demo.txt.encrypted --query Plaintext --output text | base64 --decode
