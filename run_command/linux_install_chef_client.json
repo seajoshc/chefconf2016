@@ -40,7 +40,7 @@
                     "id":"0.aws:runShellScript",
                     "runCommand":[
                       "mkdir /etc/chef",
-                      "aws s3 cp s3://{{ bucket }}/{{ clientrb }} /etc/chef/{{ clientrb }}",
+                      "aws s3 cp s3://{{ bucket }}/{{ clientrb }} /etc/chef/client.rb",
                       "aws s3 cp s3://{{ bucket }}/{{ validatorpem }} /etc/chef/{{ validatorpem }}",
                       "aws s3 cp s3://{{ bucket }}/{{ runlist }} /tmp/{{ runlist }}",
                       "curl -L https://omnitruck.chef.io/install.sh -o /tmp/chef_client_install.sh",
