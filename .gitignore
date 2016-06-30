@@ -1,5 +1,5 @@
 venv/
-kms_demo.txt.encrypted
+kms_demo/kms_demo.txt.encrypted
 run_command/assets/aws-validator.pem
 run_command/assets/client_linux.rb
 run_command/assets/client_windows.rb
