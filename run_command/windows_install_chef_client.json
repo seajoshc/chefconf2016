@@ -1,0 +1,48 @@
+{
+    "schemaVersion":"1.2",
+    "description":"Bootstrap a Windows server with the Chef Client.",
+    "parameters": {
+        "ChefVersion": {
+            "default": "12",
+            "description": "Required: Version of the Chef client to install.",
+            "type": "String"
+        },
+        "BucketName": {
+            "default": "",
+            "description": "Required: S3 Bucket where the client.rb and Chef validator .pem can be retrieved from.",
+            "type": "String"
+        },
+        "Clientrb": {
+            "default": "client.rb",
+            "description": "Required: Name of the client.rb file used to configure the Chef Client.",
+            "type": "String"
+        },
+        "Validatorpem": {
+            "default": "client-validator.pem",
+            "description": "Required: Name of the .pem file used to authenticate the Chef Client.",
+            "type": "String"
+        }
+    },
+    "runtimeConfig":{
+        "aws:runPowerShellScript":{
+            "properties":[
+                {
+                    "id":"0.aws:runPowerShellScript",
+                    "runCommand":[
+                      "md C:\\chef",
+                      "Copy-S3Object -BucketName {{ BucketName }} -Key {{ Clientrb }} -LocalFile C:\\chef\\client.rb",
+                      "Copy-S3Object -BucketName {{ BucketName }} -Key {{ Validatorpem }} -LocalFile C:\\chef\\{{ Validatorpem }}",
+                      "Invoke-WebRequest -useb https://omnitruck.chef.io/install.ps1 -OutFile C:\\chef\\chef_client_install.ps1",
+                      "C:\\chef\\chef_client_install.ps1",
+                      "install -version {{ ChefVersion }}",
+                      "C:\\opscode\\chef\\bin\\chef-client",
+                      "C:\\opscode\\chef\\bin\\chef-service-manager -a install",
+                      "C:\\opscode\\chef\\bin\\chef-service-manager -a start"
+                    ],
+                    "workingDirectory":"",
+                    "timeoutSeconds":"300"
+                }
+            ]
+        }
+    }
+}

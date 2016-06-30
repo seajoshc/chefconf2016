@@ -1,0 +1,56 @@
+{
+    "schemaVersion":"1.2",
+    "description":"Bootstrap a Linux server with the Chef Client.",
+    "parameters": {
+        "version": {
+            "default": "12",
+            "description": "Version of the Chef client to install.",
+            "type": "String"
+        },
+        "bucket": {
+            "default": "",
+            "description": "S3 Bucket where the client.rb and Chef validator .pem can be retrieved from.",
+            "type": "String"
+        },
+        "clientrb": {
+            "default": "client.rb",
+            "description": "Name of the client.rb file in the above S3 Bukcet used to configure the Chef Client.",
+            "type": "String"
+        },
+        "validatorpem": {
+            "default": "client-validator.pem",
+            "description": "Name of the .pem file in the above S3 Bukcet used to authenticate the Chef Client.",
+            "type": "String"
+        },
+        "runlist": {
+            "default": "runlist.json",
+            "description": "Name of the runlist file in the above S3 Bukcet that will be used to bootstrap the node with.",
+            "type": "String"
+        },
+        "environment": {
+            "default": "_default",
+            "description": "Name of the Chef Server Environment to play the node.",
+            "type": "String"
+        }
+    },
+    "runtimeConfig":{
+        "aws:runShellScript":{
+            "properties":[
+                {
+                    "id":"0.aws:runShellScript",
+                    "runCommand":[
+                      "mkdir /etc/chef",
+                      "aws s3 cp s3://{{ bucket }}/{{ clientrb }} /etc/chef/{{ clientrb }}",
+                      "aws s3 cp s3://{{ bucket }}/{{ validatorpem }} /etc/chef/{{ validatorpem }}",
+                      "aws s3 cp s3://{{ bucket }}/{{ runlist }} /tmp/{{ runlist }}",
+                      "curl -L https://omnitruck.chef.io/install.sh -o /tmp/chef_client_install.sh",
+                      "bash /tmp/chef_client_install.sh -v {{ version }}",
+                      "chef-client -j /tmp/{{ runlist }} --environment {{ environment }}"
+                    ],
+                    "workingDirectory":"/tmp",
+                    "timeoutSeconds":"300"
+                }
+            ]
+        }
+    }
+}
