@@ -6,7 +6,7 @@ Materials from my talk at ChefConf 2016 "Cooking with AWS"
 * https://aws.amazon.com/blogs/apn/automatically-delete-terminated-instances-in-chef-server-with-aws-lambda-and-cloudwatch-events/
 
 # Sample Run Command Documents
-*
+* https://github.com/irlrobot/chefconf2016/tree/master/run_command
 
 # KMS Demo
 aws kms encrypt --region us-west-2 --key-id KEYID --plaintext file://kms_demo.txt
