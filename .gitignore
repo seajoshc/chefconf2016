@@ -4,3 +4,4 @@ run_command/assets/aws-validator.pem
 run_command/assets/client_linux.rb
 run_command/assets/client_windows.rb
 *.tfstate*
+*DS_STORE*
