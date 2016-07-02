@@ -1,3 +1,6 @@
 {
-  "run_list": [ "recipe[chef-client::init_service]" ]
+  "run_list": [
+    "recipe[chef-client::init_service]",
+    "role[linux]"
+  ]
 }
