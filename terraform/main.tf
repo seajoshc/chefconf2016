@@ -74,10 +74,9 @@ resource "aws_instance" "demo_instances_linux" {
   instance_type = "t2.micro"
   iam_instance_profile = "${aws_iam_instance_profile.runcommand_chef_bootstrap_profile.name}"
   tags = {
-    Name = "chef_demo"
+    Name = "chef_demo_linux"
     organization = "aws"
   }
-  vpc_security_group_ids = []
   count = 2
 }
 
@@ -86,9 +85,8 @@ resource "aws_instance" "demo_instances_windows" {
   instance_type = "t2.micro"
   iam_instance_profile = "${aws_iam_instance_profile.runcommand_chef_bootstrap_profile.name}"
   tags = {
-    Name = "chef_demo"
+    Name = "chef_demo_windows"
     organization = "aws"
   }
-  vpc_security_group_ids = []
   count = 2
 }
