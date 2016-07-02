@@ -8,7 +8,7 @@
                 {
                     "id":"0.aws:runShellScript",
                     "runCommand":[
-                      "chef-client -o \"recipe[audit::default]\""
+                      "chef-client -o \"recipe[audit::default],role[linux]\""
                     ],
                     "workingDirectory":"/tmp",
                     "timeoutSeconds":"300"
