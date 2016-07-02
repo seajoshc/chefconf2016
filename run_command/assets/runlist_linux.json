@@ -1,6 +1,7 @@
 {
   "run_list": [
     "recipe[chef-client::init_service]",
+    "recipe[ntp::default]",
     "role[linux]"
   ]
 }
