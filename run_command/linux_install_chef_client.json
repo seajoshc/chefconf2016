@@ -29,7 +29,7 @@
         },
         "environment": {
             "default": "_default",
-            "description": "Name of the Chef Server Environment to play the node.",
+            "description": "Name of the Chef Server Environment to put the node.",
             "type": "String"
         }
     },
