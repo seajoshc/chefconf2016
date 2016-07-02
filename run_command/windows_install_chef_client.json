@@ -17,9 +17,19 @@
             "description": "Required: Name of the client.rb file used to configure the Chef Client.",
             "type": "String"
         },
+        "Runlist": {
+            "default": "runlist.json",
+            "description": "Name of the runlist file in the above S3 Bukcet that will be used to bootstrap the node with.",
+            "type": "String"
+        },
         "Validatorpem": {
             "default": "client-validator.pem",
             "description": "Required: Name of the .pem file used to authenticate the Chef Client.",
+            "type": "String"
+        },
+        "Environment": {
+            "default": "_default",
+            "description": "Name of the Chef Server Environment to put the node.",
             "type": "String"
         }
     },
@@ -32,10 +42,11 @@
                       "md C:\\chef",
                       "Copy-S3Object -BucketName {{ BucketName }} -Key {{ Clientrb }} -LocalFile C:\\chef\\client.rb",
                       "Copy-S3Object -BucketName {{ BucketName }} -Key {{ Validatorpem }} -LocalFile C:\\chef\\{{ Validatorpem }}",
+                      "Copy-S3Object -BucketName {{ BucketName }} -Key {{ Runlist }} -LocalFile C:\\chef\\{{ Runlist }}",
                       "Invoke-WebRequest -useb https://omnitruck.chef.io/install.ps1 -OutFile C:\\chef\\chef_client_install.ps1",
                       "C:\\chef\\chef_client_install.ps1",
                       "install -version {{ ChefVersion }}",
-                      "C:\\opscode\\chef\\bin\\chef-client",
+                      "C:\\opscode\\chef\\bin\\chef-client -j C:\\chef\\{{ Runlist }} --environment {{ Environment }}",
                       "C:\\opscode\\chef\\bin\\chef-service-manager -a install",
                       "C:\\opscode\\chef\\bin\\chef-service-manager -a start"
                     ],
