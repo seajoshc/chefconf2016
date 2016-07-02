@@ -1,0 +1,19 @@
+{
+    "schemaVersion":"1.2",
+    "description":"Run the default Chef Compliance Scan.",
+    "parameters": {},
+    "runtimeConfig":{
+        "aws:runShellScript":{
+            "properties":[
+                {
+                    "id":"0.aws:runShellScript",
+                    "runCommand":[
+                      "chef-client -o \"recipe[audit::default]\""
+                    ],
+                    "workingDirectory":"/tmp",
+                    "timeoutSeconds":"300"
+                }
+            ]
+        }
+    }
+}
