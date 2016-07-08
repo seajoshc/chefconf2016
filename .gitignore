@@ -5,3 +5,4 @@ run_command/assets/client_linux.rb
 run_command/assets/client_windows.rb
 *.tfstate*
 *DS_STORE*
+SETUP.md
