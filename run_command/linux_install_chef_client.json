@@ -8,22 +8,22 @@
             "type": "String"
         },
         "bucket": {
-            "default": "",
+            "default": "joshcbprivate",
             "description": "S3 Bucket where the client.rb and Chef validator .pem can be retrieved from.",
             "type": "String"
         },
         "clientrb": {
-            "default": "client.rb",
+            "default": "client_linux.rb",
             "description": "Name of the client.rb file in the above S3 Bukcet used to configure the Chef Client.",
             "type": "String"
         },
         "validatorpem": {
-            "default": "client-validator.pem",
+            "default": "aws-validator.pem",
             "description": "Name of the .pem file in the above S3 Bukcet used to authenticate the Chef Client.",
             "type": "String"
         },
         "runlist": {
-            "default": "runlist.json",
+            "default": "runlist_linux.json",
             "description": "Name of the runlist file in the above S3 Bukcet that will be used to bootstrap the node with.",
             "type": "String"
         },
