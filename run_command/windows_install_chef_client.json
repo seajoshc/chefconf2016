@@ -48,7 +48,8 @@
                       "install -version {{ ChefVersion }}",
                       "C:\\opscode\\chef\\bin\\chef-client -j C:\\chef\\{{ Runlist }} --environment {{ Environment }}",
                       "C:\\opscode\\chef\\bin\\chef-service-manager -a install",
-                      "C:\\opscode\\chef\\bin\\chef-service-manager -a start"
+                      "C:\\opscode\\chef\\bin\\chef-service-manager -a start",
+                      "del C:\\chef\\{{ Validatorpem }}"
                     ],
                     "workingDirectory":"",
                     "timeoutSeconds":"300"
