@@ -19,6 +19,7 @@ def find_instances():
     instance_ids = []
     filters = [
         {'Name': 'tag:Name', 'Values': ['chef_demo_linux']},
+        {'Name': 'instance-state-name', 'Values': ['running']}
     ]
     try:
         instance_ids = find_instance_ids(filters)
