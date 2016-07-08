@@ -45,7 +45,8 @@
                       "aws s3 cp s3://{{ bucket }}/{{ runlist }} /tmp/{{ runlist }}",
                       "curl -L https://omnitruck.chef.io/install.sh -o /tmp/chef_client_install.sh",
                       "bash /tmp/chef_client_install.sh -v {{ version }}",
-                      "chef-client -j /tmp/{{ runlist }} --environment {{ environment }}"
+                      "chef-client -j /tmp/{{ runlist }} --environment {{ environment }}",
+                      "rm /etc/chef/{{ validatorpem }}"
                     ],
                     "workingDirectory":"/tmp",
                     "timeoutSeconds":"300"
